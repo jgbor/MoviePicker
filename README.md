@@ -1,2 +1,2 @@
 # MoviePicker
-Angular movie chooser app for TMDB
+Angular movie chooser app for TMDB API
