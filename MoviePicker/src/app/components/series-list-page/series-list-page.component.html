@@ -1,1 +1,50 @@
+<div class="container">
+  <div class="button-group">
+    <mat-button-toggle-group (change)="getSeries(true)" [(ngModel)]="selectedValue">
+      <mat-button-toggle value="discover">Discover</mat-button-toggle>
+      <mat-button-toggle value="popular">Popular</mat-button-toggle>
+      <mat-button-toggle value="topRated">Top Rated</mat-button-toggle>
+      <mat-button-toggle value="airingToday">Airing today</mat-button-toggle>
+      <mat-button-toggle value="onTheAir">On the air</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="center-row">
+    <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
+            (click)="currentPage=currentPage-1;getSeries(false)">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    {{currentPage}}/{{maxPages}}
+    <button mat-icon-button aria-label="Forward" color="primary" [disabled]="currentPage >= maxPages"
+            (click)="currentPage=currentPage+1;getSeries(false)">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="card-grid">
+    <mat-card *ngFor="let series of (seriesList | async)?.results" routerLink="/movies/{{series.id}}">
+      <mat-card-header class="center-row">
+        <mat-card-title>{{series.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img mat-card-image src="http://image.tmdb.org/t/p/w200/{{series.poster_path}}" alt="Movie Poster">
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-card-subtitle>{{series.vote_average}}</mat-card-subtitle>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+  <div class="center-row">
+    <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
+            (click)="currentPage=currentPage-1;getSeries(false)">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    {{currentPage}}/{{maxPages}}
+    <button mat-icon-button aria-label="Forward" color="primary" [disabled]="currentPage >= maxPages"
+            (click)="currentPage=currentPage+1;getSeries(false)">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>
 <p>series-page works!</p>
