@@ -1,7 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, NavigationEnd} from '@angular/router';
-import {Observable} from "rxjs";
-import * as _ from "lodash";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +8,5 @@ import * as _ from "lodash";
 export class MoviePickerAppComponent{
   title = "MoviePicker"
 
-  constructor(private router: Router) {}
+  constructor() {}
 }
