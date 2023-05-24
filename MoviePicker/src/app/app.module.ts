@@ -17,6 +17,7 @@ import {GenreNamesPipe} from './pipes/genre-names.pipe';
 import {MatButtonModule} from "@angular/material/button";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {FormsModule} from "@angular/forms";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {FormsModule} from "@angular/forms";
     MatTabsModule,
     MatButtonModule,
     MatButtonToggleModule,
-    FormsModule
+    FormsModule,
+    MatCardModule
   ],
   providers: [
     MovieService,
