@@ -17,24 +17,24 @@ export class MovieService {
     return this.httpClient.get<Movie>(`${this.url}/movie/${id}?api_key=${apiKey}`)
   }
 
-  getDiscoverMovies(): Observable<List<Movie>> {
-    return this.httpClient.get<List<Movie>>(`${this.url}/discover/movie?api_key=${apiKey}`)
+  getDiscoverMovies(page: number): Observable<List<Movie>> {
+    return this.httpClient.get<List<Movie>>(`${this.url}/discover/movie?api_key=${apiKey}&page=${page}`)
   }
 
-  getPopularMovies(): Observable<List<Movie>> {
-    return this.httpClient.get<List<Movie>>(`${this.url}/movie/popular?api_key=${apiKey}`)
+  getPopularMovies(page: number): Observable<List<Movie>> {
+    return this.httpClient.get<List<Movie>>(`${this.url}/movie/popular?api_key=${apiKey}&page=${page}`)
   }
 
-  getTopRatedMovies(): Observable<List<Movie>> {
-    return this.httpClient.get<List<Movie>>(`${this.url}/movie/top_rated?api_key=${apiKey}`)
+  getTopRatedMovies(page: number): Observable<List<Movie>> {
+    return this.httpClient.get<List<Movie>>(`${this.url}/movie/top_rated?api_key=${apiKey}&page=${page}`)
   }
 
-  getUpcomingMovies(): Observable<List<Movie>> {
-    return this.httpClient.get<List<Movie>>(`${this.url}/movie/upcoming?api_key=${apiKey}`)
+  getUpcomingMovies(page: number): Observable<List<Movie>> {
+    return this.httpClient.get<List<Movie>>(`${this.url}/movie/upcoming?api_key=${apiKey}&page=${page}`)
   }
 
-  getNowPlayingMovies(): Observable<List<Movie>> {
-    return this.httpClient.get<List<Movie>>(`${this.url}/movie/now_playing?api_key=${apiKey}`)
+  getNowPlayingMovies(page: number): Observable<List<Movie>> {
+    return this.httpClient.get<List<Movie>>(`${this.url}/movie/now_playing?api_key=${apiKey}&page=${page}`)
   }
 
   getCredits(id: number): Observable<Credits> {

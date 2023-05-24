@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {MoviePickerAppComponent} from './components/app/movie-picker-app.component';
-import {MoviePageComponent} from './components/movie-page/movie-page.component';
-import {PersonPageComponent} from './components/person-page/person-page.component';
-import {SeriesPageComponent} from './components/series-page/series-page.component';
+import {MovieListPageComponent} from './components/movie-list-page/movie-list-page.component';
+import {PersonListPageComponent} from './components/person-list-page/person-list-page.component';
+import {SeriesListPageComponent} from './components/series-list-page/series-list-page.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
@@ -18,15 +18,22 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {FormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
+import {MoviePageComponent} from './components/movie-page/movie-page.component';
+import {SeriesPageComponent} from './components/series-page/series-page.component';
+import {PersonPageComponent} from './components/person-page/person-page.component';
 
 @NgModule({
   declarations: [
     MoviePickerAppComponent,
-    MoviePageComponent,
-    PersonPageComponent,
-    SeriesPageComponent,
+    MovieListPageComponent,
+    PersonListPageComponent,
+    SeriesListPageComponent,
     NavigationbarComponent,
-    GenreNamesPipe
+    GenreNamesPipe,
+    MoviePageComponent,
+    SeriesPageComponent,
+    PersonPageComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,8 @@ import {MatCardModule} from "@angular/material/card";
     MatButtonModule,
     MatButtonToggleModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [
     MovieService,
