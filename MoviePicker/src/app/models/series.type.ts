@@ -1,6 +1,6 @@
 import {Genre} from "./genre.type";
 import {Company} from "./company.type";
-import {ProductionCountry} from "./productionCountry.type";
+import {Country} from "./country.type";
 import {Language} from "./language.type";
 import {Season} from "./season.type";
 import {Episode} from "./episode.type";
@@ -32,7 +32,7 @@ export interface Series {
 	popularity: number;
 	poster_path: string;
 	production_companies: Company[];
-	production_countries: ProductionCountry[];
+	production_countries: Country[];
 	seasons: Season[];
 	spoken_languages: Language[];
 	status: string;

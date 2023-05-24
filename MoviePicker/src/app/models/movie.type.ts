@@ -1,7 +1,7 @@
-import { Genre } from './genre.type';
-import { Company } from './company.type';
-import { ProductionCountry } from './productionCountry.type';
-import { Language } from "./language.type";
+import {Genre} from './genre.type';
+import {Company} from './company.type';
+import {Country} from './country.type';
+import {Language} from "./language.type";
 
 export interface Movie {
 	adult: boolean;
@@ -18,7 +18,7 @@ export interface Movie {
 	popularity: number;
 	poster_path: string;
 	production_companies: Company[];
-	production_countries: ProductionCountry[];
+	production_countries: Country[];
 	release_date: string;
 	revenue: number;
 	runtime: number;

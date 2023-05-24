@@ -14,6 +14,9 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTabsModule} from "@angular/material/tabs";
 import {AppRoutingModule} from "./app-routing.module";
 import {GenreNamesPipe} from './pipes/genre-names.pipe';
+import {MatButtonModule} from "@angular/material/button";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import {GenreNamesPipe} from './pipes/genre-names.pipe';
     HttpClientModule,
     MatToolbarModule,
     MatTabsModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    FormsModule
   ],
   providers: [
     MovieService,
