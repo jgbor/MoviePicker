@@ -22,7 +22,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MoviePageComponent} from './components/movie-page/movie-page.component';
 import {SeriesPageComponent} from './components/series-page/series-page.component';
 import {PersonPageComponent} from './components/person-page/person-page.component';
-import {MatGridListModule} from "@angular/material/grid-list";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
         FormsModule,
         MatCardModule,
         MatIconModule,
-        MatGridListModule
+        MatListModule,
     ],
   providers: [
     MovieService,

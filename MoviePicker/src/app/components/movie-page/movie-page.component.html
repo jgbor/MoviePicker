@@ -2,20 +2,24 @@
   <div class="backdrop">
     <img src="https://image.tmdb.org/t/p/w780/{{ (movie | async)?.backdrop_path }}" alt="Backdrop">
   </div>
-  <mat-grid-list cols="2" rowHeight="1:1">
-    <mat-grid-tile>
-      <div class="poster">
-        <h1>{{ (movie | async)?.title }}</h1>
-        <img src="https://image.tmdb.org/t/p/w500/{{ (movie | async)?.poster_path }}" alt="Poster">
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <div class="movie-details">
-        <p>{{ (movie | async)?.overview }}</p>
-        <p>{{ languages }}</p>
-        <p>{{ genres }}</p>
-        <p >{{ (movie | async)?.vote_average }}</p>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div class="properties">
+    <div class="poster">
+      <h1>{{ (movie | async)?.title }}</h1>
+      <img src="https://image.tmdb.org/t/p/w500/{{ (movie | async)?.poster_path }}" alt="Poster">
+    </div>
+    <div class="movie-details">
+      <p><a style="font-weight: bold">Rating: </a>{{ (movie | async)?.vote_average }}</p>
+      <p>{{ genres }} movie, {{(movie | async)?.runtime}} minutes</p>
+      <p><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
+      <p><a style="font-weight: bold">Release date:</a> {{ (movie | async)?.release_date }}</p>
+      {{ (movie | async)?.overview }}
+      <mat-nav-list>
+        <div *ngFor=" let castmember of (credits | async)?.cast">
+          <p *ngIf="castmember.order<=20" class="cast">
+            <a routerLink="/people/{{castmember.id}}" style="font-weight: bold">{{ castmember.name }}</a> as {{ castmember.character }}
+          </p>
+        </div>
+      </mat-nav-list>
+    </div>
+  </div>
 </div>
