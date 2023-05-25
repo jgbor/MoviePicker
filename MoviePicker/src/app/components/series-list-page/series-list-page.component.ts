@@ -7,7 +7,7 @@ import {SeriesService} from "../../services/series.service";
 @Component({
   selector: 'app-series-page',
   templateUrl: './series-list-page.component.html',
-  styleUrls: ['./series-list-page.component.css']
+  styleUrls: ['../list-page.component.css']
 })
 export class SeriesListPageComponent implements OnInit {
   constructor(private seriesService: SeriesService) {

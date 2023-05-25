@@ -8,7 +8,7 @@ import {Movie} from "../../models/movie.type";
 @Component({
   selector: 'app-movie',
   templateUrl: './movie-list-page.component.html',
-  styleUrls: ['./movie-list-page.component.css']
+  styleUrls: ['../list-page.component.css']
 })
 export class MovieListPageComponent implements OnInit {
   selectedValue: string = "discover";

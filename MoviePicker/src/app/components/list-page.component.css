@@ -1,18 +1,23 @@
-.container {
+.page{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-mat-card {
+mat-card{
   margin: 10px;
-  max-width: 250px;
-  width: 100%;
+  width: 250px;
   height: 425px;
+}
+
+mat-card > a {
+  height: inherit;
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  text-decoration: none;
 }
 
 .center-row{
