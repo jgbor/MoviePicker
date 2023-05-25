@@ -1,9 +1,4 @@
 .page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
   background-color: darkgray;
 }
 
@@ -48,6 +43,7 @@
   border: 5px purple solid;
   margin-bottom: 10px;
   width: 30%;
+  padding: 15px;
 }
 
 .movie-details p {

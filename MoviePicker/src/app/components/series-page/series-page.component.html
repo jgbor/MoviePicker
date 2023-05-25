@@ -1,1 +1,23 @@
-<p>series-page works!</p>
+<div class="page">
+  <div *ngIf="series">
+    <div class="backdrop">
+      <img src="https://image.tmdb.org/t/p/w780/{{ (series | async)?.backdrop_path }}" alt="Backdrop">
+    </div>
+    <div class="properties">
+      <div class="poster">
+        <h1>{{ (series | async)?.name }}</h1>
+        <img src="https://image.tmdb.org/t/p/w500/{{ (series | async)?.poster_path }}" alt="Poster">
+      </div>
+      <div class="series-details">
+        <p><a style="font-weight: bold">Rating: </a>{{ (series | async)?.vote_average }}</p>
+        <p>{{ genres }} series</p>
+        <p>{{(series | async)?.number_of_seasons}} season(s), {{(series | async)?.number_of_episodes}} episodes</p>
+        <p>{{(series | async)?.episode_run_time}} minutes/episode</p>
+        <p><a style="font-weight: bold">Status:</a> {{ (series | async)?.status }}</p>
+        <p><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
+        <p><a style="font-weight: bold">Release date:</a> {{ (series | async)?.first_air_date }}</p>
+        {{ (series | async)?.overview }}
+      </div>
+    </div>
+  </div>
+</div>
