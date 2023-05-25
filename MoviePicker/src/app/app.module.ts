@@ -22,6 +22,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MoviePageComponent} from './components/movie-page/movie-page.component';
 import {SeriesPageComponent} from './components/series-page/series-page.component';
 import {PersonPageComponent} from './components/person-page/person-page.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -35,19 +36,20 @@ import {PersonPageComponent} from './components/person-page/person-page.componen
     SeriesPageComponent,
     PersonPageComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    FormsModule,
-    MatCardModule,
-    MatIconModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatTabsModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        FormsModule,
+        MatCardModule,
+        MatIconModule,
+        MatGridListModule
+    ],
   providers: [
     MovieService,
     PersonService,

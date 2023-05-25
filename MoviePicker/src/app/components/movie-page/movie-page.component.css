@@ -1,0 +1,28 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 20px;
+  background-color: darkgray;
+}
+
+.mat-grid-list {
+  width: 100%;
+}
+
+.poster{
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.backdrop {
+  margin-top: 20px;
+}
+
+.movie-details p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}

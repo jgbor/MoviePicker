@@ -3,6 +3,7 @@ import {MovieService} from "../../services/movie.service";
 import {Observable} from "rxjs";
 import {List} from "../../models/list.type";
 import {Movie} from "../../models/movie.type";
+import {Title} from "@angular/platform-browser";
 
 
 @Component({
@@ -16,10 +17,11 @@ export class MovieListPageComponent implements OnInit {
   currentPage: number = 1;
   maxPages: number = 0;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private titleService: Title) { }
 
   ngOnInit(): void {
     this.getMovies(true);
+    this.titleService.setTitle("Movies");
   }
 
   getMovies(categorySwitched: boolean): void {

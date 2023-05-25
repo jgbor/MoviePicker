@@ -1,1 +1,21 @@
-<p>movie-page works!</p>
+<div *ngIf="movie && credits" class="page">
+  <div class="backdrop">
+    <img src="https://image.tmdb.org/t/p/w780/{{ (movie | async)?.backdrop_path }}" alt="Backdrop">
+  </div>
+  <mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+      <div class="poster">
+        <h1>{{ (movie | async)?.title }}</h1>
+        <img src="https://image.tmdb.org/t/p/w500/{{ (movie | async)?.poster_path }}" alt="Poster">
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="movie-details">
+        <p>{{ (movie | async)?.overview }}</p>
+        <p>{{ languages }}</p>
+        <p>{{ genres }}</p>
+        <p >{{ (movie | async)?.vote_average }}</p>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {List} from "../../models/list.type";
 import {Series} from "../../models/series.type";
 import {SeriesService} from "../../services/series.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-series-page',
@@ -10,7 +11,7 @@ import {SeriesService} from "../../services/series.service";
   styleUrls: ['../list-page.component.css']
 })
 export class SeriesListPageComponent implements OnInit {
-  constructor(private seriesService: SeriesService) {
+  constructor(private seriesService: SeriesService, private titleService: Title) {
   }
 
   selectedValue: string = "discover";
@@ -20,6 +21,7 @@ export class SeriesListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSeries(true);
+    this.titleService.setTitle("Series");
   }
 
   getSeries(categorySwitched: boolean): void {
