@@ -23,6 +23,8 @@ import {MoviePageComponent} from './components/movie-page/movie-page.component';
 import {SeriesPageComponent} from './components/series-page/series-page.component';
 import {PersonPageComponent} from './components/person-page/person-page.component';
 import {MatListModule} from "@angular/material/list";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import {MatListModule} from "@angular/material/list";
         MatCardModule,
         MatIconModule,
         MatListModule,
+        MatExpansionModule,
+        MatMenuModule
     ],
   providers: [
     MovieService,

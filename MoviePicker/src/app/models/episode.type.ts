@@ -1,3 +1,5 @@
+import {Cast, Crew} from "./common/credits.type";
+
 export interface Episode {
   id: number;
   name: string;
@@ -7,8 +9,10 @@ export interface Episode {
   air_date: string;
   episode_number: number;
   production_code: string;
-  runtime?: any;
+  runtime?: number;
   season_number: number;
   show_id: number;
   still_path: string;
+  crew?: Crew[];
+  guest_stars?: Cast[];
 }

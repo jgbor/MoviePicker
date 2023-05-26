@@ -17,6 +17,31 @@
         <p><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
         <p><a style="font-weight: bold">Release date:</a> {{ (series | async)?.first_air_date }}</p>
         {{ (series | async)?.overview }}
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let season of seasons" >
+            <mat-expansion-panel-header >
+              <mat-panel-title>
+                Season {{ (season | async)?.season_number }} <span *ngIf=" !(season | async)?.name?.startsWith('Season')" > - {{ (season | async)?.name }}</span>
+              </mat-panel-title>
+              <mat-panel-description>
+                {{ (season | async)?.episodes?.length }} episodes
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div *ngIf="(season | async)?.episodes">
+              <mat-list>
+                <mat-list-item *ngFor="let episode of (season | async)?.episodes">
+                  <span style="font-weight: bold">{{ episode.name }}</span> - {{ episode.air_date }}
+                </mat-list-item>
+              </mat-list>
+            </div>
+
+            <div *ngIf="!(season | async)?.episodes" class="no-episodes">
+              No episodes available for this season.
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
       </div>
     </div>
   </div>
