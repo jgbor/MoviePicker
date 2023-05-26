@@ -1,1 +1,32 @@
-<p>person-page works!</p>
+<div class="page">
+  <div *ngIf="person" class="page">
+    <h1>{{ (person | async)?.name }}</h1>
+    <div class="properties">
+      <div class="picture">
+        <img src="https://image.tmdb.org/t/p/w500/{{ (person | async)?.profile_path }}" alt="Picture">
+      </div>
+      <div class="person-details">
+        <p><a style="font-weight: bold">Birth: </a>{{ (person | async)?.birthday }}</p>
+        <p><a style="font-weight: bold">Place of birth: </a>{{ (person | async)?.place_of_birth }}</p>
+        <p *ngIf="(person | async)?.deathday"><a style="font-weight: bold">Death: </a>{{ (person | async)?.deathday }}
+        </p>
+        {{ (person | async)?.biography}}
+        <h2>Cast:</h2>
+        <ul>
+          <li *ngFor="let cast of firstFiveCast | async">
+            <span>{{ cast.character }} - </span>
+            <span>{{ cast.title }}</span>
+          </li>
+        </ul>
+        <h2>Crew:</h2>
+        <ul>
+          <li *ngFor="let crew of firstFiveCrew | async">
+            <span>{{ crew.department }} - </span>
+            <span>{{ crew.job }} - </span>
+            <span>{{ crew.title }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

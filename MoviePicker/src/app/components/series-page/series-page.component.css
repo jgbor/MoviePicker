@@ -49,13 +49,3 @@
   font-size: 16px;
   margin-top: 5px;
 }
-
-.series-details .cast {
-  font-size: 14px;
-  margin:0;
-}
-
-.series-details .cast a{
-  color: black;
-  text-decoration: none;
-}
