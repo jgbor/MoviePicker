@@ -1,11 +1,11 @@
-import {Genre} from "./common/genre.type";
-import {Company} from "./common/company.type";
-import {Country} from "./common/country.type";
-import {Language} from "./common/language.type";
+import {Genre} from "../common/genre.type";
+import {Company} from "../common/company.type";
+import {Country} from "../common/country.type";
+import {Language} from "../common/language.type";
 import {Season} from "./season.type";
 import {Episode} from "./episode.type";
 import {Network} from "./network.type";
-import {CreatedBy} from "./common/credit.type";
+import {CreatedBy} from "./credit.type";
 
 export interface Series {
 	adult?: boolean;

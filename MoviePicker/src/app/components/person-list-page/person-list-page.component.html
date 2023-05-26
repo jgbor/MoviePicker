@@ -1,1 +1,49 @@
-<p>person-page works!</p>
+<div class="page">
+  <div class="button-group">
+    <mat-button-toggle-group (change)="getPeople(true)" [(ngModel)]="selectedValue">
+      <mat-button-toggle value="popular">Popular</mat-button-toggle>
+      <mat-button-toggle value="trending">Trending</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="center-row">
+    <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
+            (click)="currentPage=currentPage-1;getPeople(false)">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    {{currentPage}}/{{maxPages}}
+    <button mat-icon-button aria-label="Forward" color="primary" [disabled]="currentPage >= maxPages"
+            (click)="currentPage=currentPage+1;getPeople(false)">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="card-grid">
+    <mat-card *ngFor="let person of (people | async)?.results">
+      <a routerLink="/people/{{person.id}}">
+        <mat-card-header class="center-row">
+          <mat-card-title>{{person.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <img mat-card-image src="https://image.tmdb.org/t/p/w200/{{person.profile_path}}" alt="Picture">
+        </mat-card-content>
+        <mat-card-footer>
+          <mat-card-subtitle>{{person.known_for_department}}</mat-card-subtitle>
+        </mat-card-footer>
+      </a>
+    </mat-card>
+  </div>
+
+  <div class="center-row">
+    <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
+            (click)="currentPage=currentPage-1;getPeople(false)">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    {{currentPage}}/{{maxPages}}
+    <button mat-icon-button aria-label="Forward" color="primary" [disabled]="currentPage >= maxPages"
+            (click)="currentPage=currentPage+1;getPeople(false)">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>
+

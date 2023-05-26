@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-import {Series} from "../../models/series.type";
+import {Series} from "../../models/series/series.type";
 import {Observable} from "rxjs";
 import {SeriesService} from "../../services/series.service";
-import {Season} from "../../models/season.type";
+import {Season} from "../../models/series/season.type";
 
 @Component({
   selector: 'app-series-page',

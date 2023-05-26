@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Series} from "../models/series.type";
+import {Series} from "../models/series/series.type";
 import {apiKey} from "../apikey";
 import {Observable} from "rxjs";
 import {List} from "../models/list.type";
-import {Season} from "../models/season.type";
+import {Season} from "../models/series/season.type";
 
 @Injectable({
   providedIn: 'root'

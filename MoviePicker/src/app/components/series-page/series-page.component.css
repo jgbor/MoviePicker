@@ -18,7 +18,6 @@
   height: fit-content;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 10px;
   width: 100%;
 }
 
@@ -48,6 +47,7 @@
 
 .series-details p {
   font-size: 16px;
+  margin-top: 5px;
 }
 
 .series-details .cast {

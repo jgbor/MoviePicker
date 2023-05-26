@@ -1,7 +1,7 @@
-import {Genre} from './common/genre.type';
-import {Company} from './common/company.type';
-import {Country} from './common/country.type';
-import {Language} from "./common/language.type";
+import {Genre} from '../common/genre.type';
+import {Company} from '../common/company.type';
+import {Country} from '../common/country.type';
+import {Language} from "../common/language.type";
 
 export interface Movie {
 	adult: boolean;

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {List} from "../../models/list.type";
-import {Series} from "../../models/series.type";
+import {Series} from "../../models/series/series.type";
 import {SeriesService} from "../../services/series.service";
 import {Title} from "@angular/platform-browser";
 

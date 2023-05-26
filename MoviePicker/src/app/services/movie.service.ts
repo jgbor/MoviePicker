@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Movie} from '../models/movie.type';
+import {Movie} from '../models/movie/movie.type';
 import {HttpClient} from "@angular/common/http";
 import {apiKey} from "../apikey";
-import {Credits} from "../models/common/credits.type";
+import {Credits} from "../models/movie/credits.type";
 import {List} from "../models/list.type";
 
 @Injectable({

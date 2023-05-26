@@ -41,13 +41,13 @@
 .movie-details{
   margin-top: 100px;
   border: 5px purple solid;
-  margin-bottom: 10px;
   width: 30%;
   padding: 15px;
 }
 
 .movie-details p {
   font-size: 16px;
+  margin-top: 5px;
 }
 
 .movie-details .cast {

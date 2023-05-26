@@ -17,11 +17,13 @@
         <p><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
         <p><a style="font-weight: bold">Release date:</a> {{ (series | async)?.first_air_date }}</p>
         {{ (series | async)?.overview }}
+        <p style="font-weight: bold">Seasons:</p>
         <mat-accordion>
-          <mat-expansion-panel *ngFor="let season of seasons" >
-            <mat-expansion-panel-header >
+          <mat-expansion-panel *ngFor="let season of seasons">
+            <mat-expansion-panel-header>
               <mat-panel-title>
-                Season {{ (season | async)?.season_number }} <span *ngIf=" !(season | async)?.name?.startsWith('Season')" > - {{ (season | async)?.name }}</span>
+                {{ (season | async)?.season_number }} <span
+                *ngIf=" !(season | async)?.name?.startsWith('Season')"> - {{ (season | async)?.name }}</span>
               </mat-panel-title>
               <mat-panel-description>
                 {{ (season | async)?.episodes?.length }} episodes

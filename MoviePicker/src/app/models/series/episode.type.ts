@@ -1,4 +1,4 @@
-import {Cast, Crew} from "./common/credits.type";
+import {Cast, Crew} from "../movie/credits.type";
 
 export interface Episode {
   id: number;

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../../services/movie.service";
 import {Observable} from "rxjs";
 import {List} from "../../models/list.type";
-import {Movie} from "../../models/movie.type";
+import {Movie} from "../../models/movie/movie.type";
 import {Title} from "@angular/platform-browser";
 
 

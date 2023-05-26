@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Movie} from "../../models/movie.type";
+import {Movie} from "../../models/movie/movie.type";
 import {MovieService} from "../../services/movie.service";
 import {Observable} from "rxjs";
 import {Title} from "@angular/platform-browser";
-import {Credits} from "../../models/common/credits.type";
+import {Credits} from "../../models/movie/credits.type";
 
 @Component({
   selector: 'app-movie-page',
