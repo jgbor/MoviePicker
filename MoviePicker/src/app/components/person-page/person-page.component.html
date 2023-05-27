@@ -10,22 +10,34 @@
         <p><a style="font-weight: bold">Place of birth: </a>{{ (person | async)?.place_of_birth }}</p>
         <p *ngIf="(person | async)?.deathday"><a style="font-weight: bold">Death: </a>{{ (person | async)?.deathday }}
         </p>
+        <p>
+          <button mat-raised-button [matMenuTriggerFor]="castMenu" color="black-button" class="black-button">Cast</button>
+          <mat-menu #castMenu="matMenu">
+            <ng-container *ngIf="(credits | async) as credits">
+              <div *ngFor="let cast of credits?.cast">
+                <button mat-menu-item [routerLink]="cast.media_type === 'movie' ? ['/', 'movies', cast.id] : ['/', 'series', cast.id]" *ngIf="cast.character !== ''">
+                  <span style="font-weight: bold">{{ cast.character }}</span>
+                  <span> in {{ cast.title }}{{cast.name}}</span>
+                </button>
+              </div>
+            </ng-container>
+          </mat-menu>
+
+          <button mat-raised-button [matMenuTriggerFor]="crewMenu" color="black-button" class="black-button">Crew</button>
+          <mat-menu #crewMenu="matMenu">
+            <ng-container *ngIf="(credits | async) as credits">
+              <div *ngFor="let crew of credits?.crew">
+                <button mat-menu-item [routerLink]="crew.media_type === 'movie' ? ['/', 'movies', crew.id] : ['/', 'series', crew.id]">
+                  <span style="font-weight: bold">{{ crew.department }} - </span>
+                  <span>{{ crew.job }} - </span>
+                  <span>{{ crew.title }}{{crew.name}}</span>
+                </button>
+              </div>
+            </ng-container>
+          </mat-menu>
+        </p>
         {{ (person | async)?.biography}}
-        <h2>Cast:</h2>
-        <ul>
-          <li *ngFor="let cast of firstFiveCast | async">
-            <span>{{ cast.character }} - </span>
-            <span>{{ cast.title }}</span>
-          </li>
-        </ul>
-        <h2>Crew:</h2>
-        <ul>
-          <li *ngFor="let crew of firstFiveCrew | async">
-            <span>{{ crew.department }} - </span>
-            <span>{{ crew.job }} - </span>
-            <span>{{ crew.title }}</span>
-          </li>
-        </ul>
+
       </div>
     </div>
   </div>
