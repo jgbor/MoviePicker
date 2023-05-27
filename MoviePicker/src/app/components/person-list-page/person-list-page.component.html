@@ -6,7 +6,7 @@
     </mat-button-toggle-group>
   </div>
 
-  <div class="center-row">
+  <div class="center-row" *ngIf="(people | async)">
     <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
             (click)="currentPage=currentPage-1;getPeople(false)">
       <mat-icon>chevron_left</mat-icon>
@@ -34,7 +34,7 @@
     </mat-card>
   </div>
 
-  <div class="center-row">
+  <div class="center-row" *ngIf="(people | async)">
     <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
             (click)="currentPage=currentPage-1;getPeople(false)">
       <mat-icon>chevron_left</mat-icon>

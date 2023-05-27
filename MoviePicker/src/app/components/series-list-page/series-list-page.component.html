@@ -10,7 +10,7 @@
     </mat-button-toggle-group>
   </div>
 
-  <div class="center-row">
+  <div class="center-row" *ngIf="(seriesList | async)">
     <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
             (click)="currentPage=currentPage-1;getSeries(false)">
       <mat-icon>chevron_left</mat-icon>
@@ -38,7 +38,7 @@
     </mat-card>
   </div>
 
-  <div class="center-row">
+  <div class="center-row" *ngIf="(seriesList | async)">
     <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
             (click)="currentPage=currentPage-1;getSeries(false)">
       <mat-icon>chevron_left</mat-icon>
