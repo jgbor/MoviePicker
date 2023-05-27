@@ -5,22 +5,24 @@ import {List} from "../../models/list.type";
 import {Movie} from "../../models/movie/movie.type";
 import {Title} from "@angular/platform-browser";
 
-
 @Component({
   selector: 'app-movie',
   templateUrl: './movie-list-page.component.html',
   styleUrls: ['../list-page.component.css']
 })
 export class MovieListPageComponent implements OnInit {
-  selectedValue: string = "trending";
   movies: Observable<List<Movie>> | undefined;
+  selectedValue: string = "trending";
   currentPage: number = 1;
   maxPages: number = 0;
 
   constructor(private movieService: MovieService, private titleService: Title) { }
 
   ngOnInit(): void {
-    this.getMovies(true);
+    this.selectedValue = sessionStorage.getItem('movieSelectedValue') || "trending";
+    this.currentPage = parseInt(sessionStorage.getItem('movieCurrentPage') || '1');
+    this.maxPages = parseInt(sessionStorage.getItem('movieMaxPages') || '0');
+    this.getMovies(false);
     this.titleService.setTitle("Movies");
   }
 
@@ -52,5 +54,12 @@ export class MovieListPageComponent implements OnInit {
       this.movies.subscribe(movies => {
         this.maxPages = movies.total_pages;
       });
+    this.saveToSessionStorage();
+  }
+
+  private saveToSessionStorage() {
+    sessionStorage.setItem('movieSelectedValue', this.selectedValue);
+    sessionStorage.setItem('movieCurrentPage', this.currentPage.toString());
+    sessionStorage.setItem('movieMaxPages', this.maxPages.toString());
   }
 }

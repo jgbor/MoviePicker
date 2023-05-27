@@ -19,8 +19,11 @@ export class PersonListPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("People");4
-    this.getPeople(true);
+    this.selectedValue = sessionStorage.getItem('peopleSelectedValue') || "trending";
+    this.currentPage = parseInt(sessionStorage.getItem('peopleCurrentPage') || '1');
+    this.maxPages = parseInt(sessionStorage.getItem('peopleMaxPages') || '0');
+    this.getPeople(false);
+    this.titleService.setTitle("People");
   }
 
   getPeople(categorySwitched: boolean): void {
@@ -39,5 +42,13 @@ export class PersonListPageComponent implements OnInit{
       this.people.subscribe(people => {
         this.maxPages = people.total_pages;
       });
+    this.saveToSessionStorage()
+  }
+
+
+  private saveToSessionStorage() {
+    sessionStorage.setItem('peopleSelectedValue', this.selectedValue);
+    sessionStorage.setItem('peopleCurrentPage', this.currentPage.toString());
+    sessionStorage.setItem('peopleMaxPages', this.maxPages.toString());
   }
 }

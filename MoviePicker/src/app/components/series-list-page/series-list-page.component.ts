@@ -20,7 +20,10 @@ export class SeriesListPageComponent implements OnInit {
   maxPages: number = 0;
 
   ngOnInit(): void {
-    this.getSeries(true);
+    this.selectedValue = sessionStorage.getItem('seriesSelectedValue') || "trending";
+    this.currentPage = parseInt(sessionStorage.getItem('seriesCurrentPage') || '1');
+    this.maxPages = parseInt(sessionStorage.getItem('seriesMaxPages') || '0');
+    this.getSeries(false);
     this.titleService.setTitle("Series");
   }
 
@@ -52,5 +55,12 @@ export class SeriesListPageComponent implements OnInit {
       this.seriesList.subscribe(seriesList => {
         this.maxPages = seriesList.total_pages;
       });
+    this.saveToSessionStorage()
+  }
+
+  private saveToSessionStorage() {
+    sessionStorage.setItem('seriesSelectedValue', this.selectedValue);
+    sessionStorage.setItem('seriesCurrentPage', this.currentPage.toString());
+    sessionStorage.setItem('seriesMaxPages', this.maxPages.toString());
   }
 }
