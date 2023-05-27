@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {Series} from "../../models/series/series.type";
-import {Observable} from "rxjs";
+import {catchError, Observable} from "rxjs";
 import {SeriesService} from "../../services/series.service";
 import {Season} from "../../models/series/season.type";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-series-page',
@@ -18,7 +19,7 @@ export class SeriesPageComponent implements OnInit{
   genres: string = "";
   languages: string = "";
 
-  constructor(private route: ActivatedRoute,private seriesService: SeriesService,private titleService: Title) { }
+  constructor(private route: ActivatedRoute,private seriesService: SeriesService,private titleService: Title, private snackbar: MatSnackBar) { }
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.seriesId = params['id'];
@@ -28,7 +29,13 @@ export class SeriesPageComponent implements OnInit{
   }
 
   private getSeries() {
-    this.series = this.seriesService.getSeries(this.seriesId);
+    this.series = this.seriesService.getSeries(this.seriesId).pipe(
+      catchError(err => {
+          console.log(err);
+          this.openSnackBar("Error occurred while fetching data", "Retry");
+          return [];
+        }
+      ));
     this.series.subscribe( series => {
       this.genres = series.genres ? series.genres?.map(genre => genre.name).join(', ') : ""
       this.languages = series.spoken_languages ? series.spoken_languages?.map(language => language.english_name).join(', ') : ""
@@ -45,6 +52,12 @@ export class SeriesPageComponent implements OnInit{
       }
     )
   }
-
-  protected readonly menubar = menubar;
+  private openSnackBar(message: string, action: string) {
+    let snackbarRef = this.snackbar.open(message, action, {
+      verticalPosition: "top",
+    });
+    snackbarRef.onAction().subscribe(() => {
+      this.getSeries();
+    });
+  }
 }
