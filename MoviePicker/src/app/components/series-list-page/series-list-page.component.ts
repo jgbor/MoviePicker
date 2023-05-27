@@ -14,7 +14,7 @@ export class SeriesListPageComponent implements OnInit {
   constructor(private seriesService: SeriesService, private titleService: Title) {
   }
 
-  selectedValue: string = "discover";
+  selectedValue: string = "trending";
   seriesList: Observable<List<Series>> | undefined;
   currentPage: number = 1;
   maxPages: number = 0;
@@ -43,6 +43,9 @@ export class SeriesListPageComponent implements OnInit {
         break;
       case "onTheAir":
         this.seriesList = this.seriesService.getOnTheAirSeriesList(this.currentPage);
+        break;
+      case "trending":
+        this.seriesList = this.seriesService.getTrendingSeriesList(this.currentPage);
         break;
     }
     if(this.seriesList)

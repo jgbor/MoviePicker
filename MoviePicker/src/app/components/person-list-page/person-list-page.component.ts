@@ -11,7 +11,7 @@ import {PersonService} from "../../services/person.service";
   styleUrls: ['../list-page.component.css']
 })
 export class PersonListPageComponent implements OnInit{
-  selectedValue: string = "popular";
+  selectedValue: string = "trending";
   people: Observable<List<Person>> | undefined;
   currentPage: number = 1;
   maxPages: number = 0;

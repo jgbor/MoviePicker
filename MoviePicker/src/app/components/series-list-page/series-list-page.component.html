@@ -1,6 +1,7 @@
 <div class="page">
   <div class="button-group">
     <mat-button-toggle-group (change)="getSeries(true)" [(ngModel)]="selectedValue">
+      <mat-button-toggle value="trending">Trending</mat-button-toggle>
       <mat-button-toggle value="discover">Discover</mat-button-toggle>
       <mat-button-toggle value="popular">Popular</mat-button-toggle>
       <mat-button-toggle value="topRated">Top Rated</mat-button-toggle>

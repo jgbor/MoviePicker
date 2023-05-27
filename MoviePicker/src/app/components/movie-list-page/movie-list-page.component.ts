@@ -12,7 +12,7 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['../list-page.component.css']
 })
 export class MovieListPageComponent implements OnInit {
-  selectedValue: string = "discover";
+  selectedValue: string = "trending";
   movies: Observable<List<Movie>> | undefined;
   currentPage: number = 1;
   maxPages: number = 0;
@@ -43,6 +43,9 @@ export class MovieListPageComponent implements OnInit {
         break;
       case "nowPlaying":
         this.movies = this.movieService.getNowPlayingMovies(this.currentPage);
+        break;
+      case "trending":
+        this.movies = this.movieService.getTrendingMovies(this.currentPage);
         break;
     }
     if(this.movies)

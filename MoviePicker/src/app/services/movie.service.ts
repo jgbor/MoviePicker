@@ -37,6 +37,10 @@ export class MovieService {
     return this.httpClient.get<List<Movie>>(`${this.url}/movie/now_playing?api_key=${apiKey}&page=${page}`);
   }
 
+  getTrendingMovies(page: number): Observable<List<Movie>> {
+    return this.httpClient.get<List<Movie>>(`${this.url}/trending/movie/day?api_key=${apiKey}&page=${page}`);
+  }
+
   getCredits(id: number): Observable<Credits> {
     return this.httpClient.get<any>(`${this.url}/movie/${id}/credits?api_key=${apiKey}`);
   }

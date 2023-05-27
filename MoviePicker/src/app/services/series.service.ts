@@ -37,6 +37,10 @@ export class SeriesService {
     return this.httpClient.get<List<Series>>(`${this.url}/tv/on_the_air?api_key=${apiKey}&page=${page}`);
   }
 
+  getTrendingSeriesList(page: number): Observable<List<Series>> {
+    return this.httpClient.get<List<Series>>(`${this.url}/trending/tv/day?api_key=${apiKey}&page=${page}`);
+  }
+
   getSeason(seriesId: number, seasonNumber: number): Observable<Season> {
     return this.httpClient.get<Season>(`${this.url}/tv/${seriesId}/season/${seasonNumber}?api_key=${apiKey}`);
   }
