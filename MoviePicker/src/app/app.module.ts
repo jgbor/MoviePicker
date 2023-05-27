@@ -25,6 +25,7 @@ import {PersonPageComponent} from './components/person-page/person-page.componen
 import {MatListModule} from "@angular/material/list";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatMenuModule} from "@angular/material/menu";
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -52,12 +53,14 @@ import {MatMenuModule} from "@angular/material/menu";
         MatIconModule,
         MatListModule,
         MatExpansionModule,
-        MatMenuModule
+        MatMenuModule,
+        MatSnackBarModule
     ],
   providers: [
     MovieService,
     PersonService,
-    SeriesService
+    SeriesService,
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
   ],
   bootstrap: [MoviePickerAppComponent]
 })
