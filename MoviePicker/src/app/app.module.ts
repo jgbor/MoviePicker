@@ -27,6 +27,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatMenuModule} from "@angular/material/menu";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatLineModule} from "@angular/material/core";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {MatLineModule} from "@angular/material/core";
     MatExpansionModule,
     MatMenuModule,
     MatSnackBarModule,
-    MatLineModule
+    MatLineModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     MovieService,

@@ -19,6 +19,7 @@ export class SeriesListPageComponent implements OnInit {
   seriesList: Observable<List<Series>> | undefined;
   currentPage: number = 1;
   maxPages: number = 0;
+  error: boolean = false;
 
   ngOnInit(): void {
     this.selectedValue = sessionStorage.getItem('seriesSelectedValue') || "trending";
@@ -29,6 +30,7 @@ export class SeriesListPageComponent implements OnInit {
   }
 
   getSeries(categorySwitched: boolean): void {
+    this.error= false;
     if (categorySwitched) {
       this.currentPage = 1;
     }
@@ -36,56 +38,56 @@ export class SeriesListPageComponent implements OnInit {
       case "discover":
         this.seriesList = this.seriesService.getDiscoverSeriesList(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error= true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "popular":
         this.seriesList = this.seriesService.getPopularSeriesList(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error=true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "topRated":
         this.seriesList = this.seriesService.getTopRatedSeriesList(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error=true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "airingToday":
         this.seriesList = this.seriesService.getAiringTodaySeriesList(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error=true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "onTheAir":
         this.seriesList = this.seriesService.getOnTheAirSeriesList(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error=true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "trending":
         this.seriesList = this.seriesService.getTrendingSeriesList(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error=true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
     }
     if(this.seriesList)

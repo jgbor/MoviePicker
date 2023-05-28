@@ -45,8 +45,9 @@
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
-  <div *ngIf="!(people | async)">
+  <div *ngIf="error">
     <h1 mat-line>Something bad happened, sorry :(</h1>
   </div>
+  <mat-spinner *ngIf="!(people | async) && !error"></mat-spinner>
 </div>
 

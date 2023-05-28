@@ -16,6 +16,7 @@ export class PersonListPageComponent implements OnInit{
   people: Observable<List<Person>> | undefined;
   currentPage: number = 1;
   maxPages: number = 0;
+  error: boolean = false;
   constructor(private personService: PersonService, private titleService: Title, private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class PersonListPageComponent implements OnInit{
   }
 
   getPeople(categorySwitched: boolean): void {
+    this.error=false;
     if (categorySwitched) {
       this.currentPage = 1;
     }
@@ -34,20 +36,20 @@ export class PersonListPageComponent implements OnInit{
       case "popular":
         this.people = this.personService.getPopularPersonList(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error=true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "trending":
         this.people = this.personService.getTrendingPersonList(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error=true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
     }
     if(this.people)

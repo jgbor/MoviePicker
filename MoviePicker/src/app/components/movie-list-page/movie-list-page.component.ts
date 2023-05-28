@@ -16,6 +16,7 @@ export class MovieListPageComponent implements OnInit {
   selectedValue: string = "trending";
   currentPage: number = 1;
   maxPages: number = 0;
+  error: boolean = false;
 
   constructor(private movieService: MovieService, private titleService: Title, private snackbar: MatSnackBar) { }
 
@@ -28,6 +29,7 @@ export class MovieListPageComponent implements OnInit {
   }
 
   getMovies(categorySwitched: boolean): void {
+    this.error = false;
     if (categorySwitched) {
       this.currentPage = 1;
     }
@@ -36,55 +38,55 @@ export class MovieListPageComponent implements OnInit {
         this.movies = this.movieService.getDiscoverMovies(this.currentPage).pipe(
           catchError(err => {
             console.log(err);
+            this.error = true;
             this.openSnackBar("Error occurred while fetching data", "Retry");
             return [];
-          }
-        ));
+          }));
         break;
       case "popular":
-          this.movies = this.movieService.getPopularMovies(this.currentPage).pipe(
-            catchError(err => {
-                console.log(err);
-                this.openSnackBar("Error occurred while fetching data", "Retry");
-                return [];
-              }
-            ));
+        this.movies = this.movieService.getPopularMovies(this.currentPage).pipe(
+          catchError(err => {
+            console.log(err);
+            this.error = true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "topRated":
-          this.movies = this.movieService.getTopRatedMovies(this.currentPage).pipe(
-            catchError(err => {
-                console.log(err);
-                this.openSnackBar("Error occurred while fetching data", "Retry");
-                return [];
-              }
-            ));
+        this.movies = this.movieService.getTopRatedMovies(this.currentPage).pipe(
+          catchError(err => {
+            console.log(err);
+            this.error = true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "upcoming":
         this.movies = this.movieService.getUpcomingMovies(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error = true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "nowPlaying":
         this.movies = this.movieService.getNowPlayingMovies(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error = true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
       case "trending":
         this.movies = this.movieService.getTrendingMovies(this.currentPage).pipe(
           catchError(err => {
-              console.log(err);
-              this.openSnackBar("Error occurred while fetching data", "Retry");
-              return [];
-            }
-          ));
+            console.log(err);
+            this.error = true;
+            this.openSnackBar("Error occurred while fetching data", "Retry");
+            return [];
+          }));
         break;
     }
     if(this.movies)
