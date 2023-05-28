@@ -49,4 +49,7 @@
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
+  <div *ngIf="!(movies | async)">
+    <h1 mat-line>Something bad happened, sorry :(</h1>
+  </div>
 </div>
