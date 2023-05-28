@@ -45,3 +45,10 @@ h1 {
   color: black;
   margin: 5px;
 }
+
+.middle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

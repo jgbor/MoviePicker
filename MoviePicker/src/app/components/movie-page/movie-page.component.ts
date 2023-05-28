@@ -18,6 +18,7 @@ export class MoviePageComponent implements OnInit {
   credits: Observable<Credits> | undefined;
   genres: string = "";
   languages: string = "";
+  error: boolean = false;
 
   constructor(private route: ActivatedRoute,private movieService: MovieService, private titleService: Title, private snackbar: MatSnackBar) { }
 
@@ -25,19 +26,20 @@ export class MoviePageComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.movieId = params['id'];
       this.getMovie();
-      this.getCredits();
     });
     this.movie?.subscribe(movie => this.titleService.setTitle(movie.title));
   }
 
   getMovie(): void {
+    this.error = false;
     this.movie = this.movieService.getMovie(this.movieId).pipe(
       catchError(err => {
-          console.log(err);
-          this.openSnackBar("Error occurred while fetching data", "Retry");
-          return [];
-        }
-      ));
+        console.log(err);
+        this.error = true;
+        this.openSnackBar("Error occurred while fetching data", "Retry");
+        return [];
+      }));
+    this.getCredits();
     this.movie.subscribe( movie => {
       this.genres = movie.genres ? movie.genres?.map(genre => genre.name).join(', ') : ""
       this.languages = movie.spoken_languages ? movie.spoken_languages?.map(language => language.english_name).join(', ') : ""
@@ -45,7 +47,13 @@ export class MoviePageComponent implements OnInit {
   }
 
   getCredits(): void {
-    this.credits = this.movieService.getCredits(this.movieId);
+    this.credits = this.movieService.getCredits(this.movieId).pipe(
+      catchError(err => {
+        console.log(err);
+        this.error = true;
+        this.openSnackBar("Error occurred while fetching data", "Retry");
+        return [];
+      }));
   }
 
   private openSnackBar(message: string, action: string) {

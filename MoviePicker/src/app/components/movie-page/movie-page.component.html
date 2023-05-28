@@ -1,5 +1,5 @@
 <div class="page">
-  <div *ngIf="movie && credits">
+  <div *ngIf="(movie|async) && (credits|async) && !error">
     <div mat-line class="backdrop">
       <img src="https://image.tmdb.org/t/p/w780/{{ (movie | async)?.backdrop_path }}" alt="Backdrop">
     </div>
@@ -24,5 +24,11 @@
         </mat-nav-list>
       </div>
     </div>
+  </div>
+  <div *ngIf="error" class="middle">
+    <h1 mat-line>Something bad happened, sorry :(</h1>
+  </div>
+  <div class="middle">
+    <mat-spinner *ngIf="!(movie | async) && !(credits | async) && !error"></mat-spinner>
   </div>
 </div>

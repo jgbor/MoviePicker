@@ -49,3 +49,10 @@
   font-size: 16px;
   margin-top: 5px;
 }
+
+.middle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

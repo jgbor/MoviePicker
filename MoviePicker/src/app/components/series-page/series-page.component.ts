@@ -18,6 +18,7 @@ export class SeriesPageComponent implements OnInit{
   seasons: Observable<Season>[] =  [];
   genres: string = "";
   languages: string = "";
+  error: boolean = false;
 
   constructor(private route: ActivatedRoute,private seriesService: SeriesService,private titleService: Title, private snackbar: MatSnackBar) { }
   ngOnInit() {
@@ -29,13 +30,14 @@ export class SeriesPageComponent implements OnInit{
   }
 
   private getSeries() {
+    this.error = false;
     this.series = this.seriesService.getSeries(this.seriesId).pipe(
       catchError(err => {
-          console.log(err);
-          this.openSnackBar("Error occurred while fetching data", "Retry");
-          return [];
-        }
-      ));
+        console.log(err);
+        this.error=true;
+        this.openSnackBar("Error occurred while fetching data", "Retry");
+        return [];
+      }));
     this.series.subscribe( series => {
       this.genres = series.genres ? series.genres?.map(genre => genre.name).join(', ') : ""
       this.languages = series.spoken_languages ? series.spoken_languages?.map(language => language.english_name).join(', ') : ""
@@ -47,7 +49,13 @@ export class SeriesPageComponent implements OnInit{
     this.series?.subscribe(
       series => {
         for (let i= 0; i< (series?.number_of_seasons ? series?.number_of_seasons : 0); i++) {
-          this.seasons[i] = this.seriesService.getSeason(series.id, i+1);
+          this.seasons[i] = this.seriesService.getSeason(series.id, i+1).pipe(
+            catchError(err => {
+              console.log(err);
+              this.error=true;
+              this.openSnackBar("Error occurred while fetching data", "Retry");
+              return [];
+            }));
         }
       }
     )

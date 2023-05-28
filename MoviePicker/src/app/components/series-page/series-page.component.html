@@ -1,5 +1,5 @@
 <div class="page">
-  <div *ngIf="series">
+  <div *ngIf="(series |async) && !error">
     <div mat-line class="backdrop">
       <img src="https://image.tmdb.org/t/p/w780/{{ (series | async)?.backdrop_path }}" alt="Backdrop">
     </div>
@@ -11,7 +11,8 @@
       <div class="series-details">
         <p mat-line><a style="font-weight: bold">Rating: </a>{{ (series | async)?.vote_average }}</p>
         <p mat-line>{{ genres }} series</p>
-        <p mat-line>{{(series | async)?.number_of_seasons}} season(s), {{(series | async)?.number_of_episodes}} episodes</p>
+        <p mat-line>{{(series | async)?.number_of_seasons}} season(s), {{(series | async)?.number_of_episodes}}
+          episodes</p>
         <p mat-line>{{(series | async)?.episode_run_time}} minutes/episode</p>
         <p mat-line><a style="font-weight: bold">Status:</a> {{ (series | async)?.status }}</p>
         <p mat-line><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
@@ -34,7 +35,9 @@
               <mat-list>
                 <mat-list-item *ngFor="let episode of (season | async)?.episodes; last as last">
                   <span style="font-weight: bold">{{ episode.name }}</span> - {{ episode.air_date }}
-                  <p><mat-divider *ngIf="!last"></mat-divider></p>
+                  <p>
+                    <mat-divider *ngIf="!last"></mat-divider>
+                  </p>
                 </mat-list-item>
               </mat-list>
             </div>
@@ -47,5 +50,11 @@
 
       </div>
     </div>
+  </div>
+  <div *ngIf="error" class="middle">
+    <h1 mat-line>Something bad happened, sorry :(</h1>
+  </div>
+  <div class="middle">
+    <mat-spinner *ngIf="!(series | async) && !error"></mat-spinner>
   </div>
 </div>

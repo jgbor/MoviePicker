@@ -18,6 +18,7 @@ export class PersonPageComponent implements OnInit{
   credits: Observable<CombinedCredits> | undefined;
   firstFiveCast: Observable<CombinedCreditsCast[]> | undefined;
   firstFiveCrew: Observable<CombinedCreditsCrew[]> | undefined;
+  error: boolean = false;
 
 
   constructor(private route: ActivatedRoute, private personService: PersonService, private  titleService: Title, private snackbar: MatSnackBar) { }
@@ -32,18 +33,25 @@ export class PersonPageComponent implements OnInit{
   }
 
   private getPerson() {
+    this.error=false;
     this.person = this.personService.getPerson(this.personId).pipe(
       catchError(err => {
-          console.log(err);
-          this.openSnackBar("Error occurred while fetching data", "Retry");
-          return [];
-        }
-      ));
+        console.log(err);
+        this.error = true
+        this.openSnackBar("Error occurred while fetching data", "Retry");
+        return [];
+      }));
     this.getCredits();
   }
 
   private getCredits() {
-    this.credits = this.personService.getCredits(this.personId);
+    this.credits = this.personService.getCredits(this.personId).pipe(
+      catchError(err => {
+        console.log(err);
+        this.error = true
+        this.openSnackBar("Error occurred while fetching data", "Retry");
+        return [];
+      }));
     this.credits?.subscribe(credits => {
       this.firstFiveCast = of(credits.cast.slice(0, 5));
       this.firstFiveCrew = of(credits.crew.slice(0, 5));

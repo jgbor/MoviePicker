@@ -1,5 +1,5 @@
 <div class="page">
-  <div *ngIf="person" class="page">
+  <div *ngIf="(person|async) && !error" class="page">
     <h1 mat-line>{{ (person | async)?.name }}</h1>
     <div class="properties">
       <div class="picture">
@@ -8,13 +8,17 @@
       <div class="person-details">
         <p mat-line><a style="font-weight: bold">Birth: </a>{{ (person | async)?.birthday }}</p>
         <p mat-line><a style="font-weight: bold">Place of birth: </a>{{ (person | async)?.place_of_birth }}</p>
-        <p mat-line *ngIf="(person | async)?.deathday"><a style="font-weight: bold">Death: </a>{{ (person | async)?.deathday }}</p>
-        <p mat-line>
-          <button mat-raised-button [matMenuTriggerFor]="castMenu" color="black-button" class="black-button">Cast</button>
+        <p mat-line *ngIf="(person | async)?.deathday"><a
+          style="font-weight: bold">Death: </a>{{ (person | async)?.deathday }}</p>
+        <p mat-line *ngIf="(credits | async)">
+          <button mat-raised-button [matMenuTriggerFor]="castMenu" color="black-button" class="black-button">Cast
+          </button>
           <mat-menu #castMenu="matMenu">
             <ng-container *ngIf="(credits | async) as credits">
               <div *ngFor="let cast of credits?.cast; last as last">
-                <button mat-line mat-menu-item [routerLink]="cast.media_type === 'movie' ? ['/', 'movies', cast.id] : ['/', 'series', cast.id]" *ngIf="cast.character !== ''">
+                <button mat-line mat-menu-item
+                        [routerLink]="cast.media_type === 'movie' ? ['/', 'movies', cast.id] : ['/', 'series', cast.id]"
+                        *ngIf="cast.character !== ''">
                   <span style="font-weight: bold">{{ cast.character }}</span>
                   <span> in {{ cast.title }}{{cast.name}}</span>
                 </button>
@@ -23,11 +27,13 @@
             </ng-container>
           </mat-menu>
 
-          <button mat-raised-button [matMenuTriggerFor]="crewMenu" color="black-button" class="black-button">Crew</button>
+          <button mat-raised-button [matMenuTriggerFor]="crewMenu" color="black-button" class="black-button">Crew
+          </button>
           <mat-menu #crewMenu="matMenu">
             <ng-container *ngIf="(credits | async) as credits">
               <div *ngFor="let crew of credits?.crew; last as last">
-                <button mat-line mat-menu-item [routerLink]="crew.media_type === 'movie' ? ['/', 'movies', crew.id] : ['/', 'series', crew.id]">
+                <button mat-line mat-menu-item
+                        [routerLink]="crew.media_type === 'movie' ? ['/', 'movies', crew.id] : ['/', 'series', crew.id]">
                   <span style="font-weight: bold">{{ crew.department }} - </span>
                   <span>{{ crew.job }} - </span>
                   <span>{{ crew.title }}{{crew.name}}</span>
@@ -41,5 +47,11 @@
 
       </div>
     </div>
+  </div>
+  <div *ngIf="error" class="middle">
+    <h1 mat-line>Something bad happened, sorry :(</h1>
+  </div>
+  <div class="middle">
+    <mat-spinner *ngIf="!(person | async) && !error"></mat-spinner>
   </div>
 </div>
