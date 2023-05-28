@@ -1,22 +1,22 @@
 <div class="page">
   <div *ngIf="movie && credits">
-    <div class="backdrop">
+    <div mat-line class="backdrop">
       <img src="https://image.tmdb.org/t/p/w780/{{ (movie | async)?.backdrop_path }}" alt="Backdrop">
     </div>
     <div class="properties">
       <div class="poster">
-        <h1>{{ (movie | async)?.title }}</h1>
+        <h1 mat-line>{{ (movie | async)?.title }}</h1>
         <img src="https://image.tmdb.org/t/p/w500/{{ (movie | async)?.poster_path }}" alt="Poster">
       </div>
       <div class="movie-details">
-        <p><a style="font-weight: bold">Rating: </a>{{ (movie | async)?.vote_average }}</p>
-        <p>{{ genres }} movie, {{(movie | async)?.runtime}} minutes</p>
-        <p><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
-        <p><a style="font-weight: bold">Release date:</a> {{ (movie | async)?.release_date }}</p>
+        <p mat-line><a style="font-weight: bold">Rating: </a>{{ (movie | async)?.vote_average }}</p>
+        <p mat-line>{{ genres }} movie, {{(movie | async)?.runtime}} minutes</p>
+        <p mat-line><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
+        <p mat-line><a style="font-weight: bold">Release date:</a> {{ (movie | async)?.release_date }}</p>
         {{ (movie | async)?.overview }}
         <mat-nav-list>
           <div *ngFor=" let castMember of (credits | async)?.cast">
-            <p *ngIf="castMember.order<=20" class="cast">
+            <p mat-line *ngIf="castMember.order<=20" class="cast">
               <a routerLink="/people/{{castMember.id}}" style="font-weight: bold">{{ castMember.name }}</a>
               as {{ castMember.character }}
             </p>

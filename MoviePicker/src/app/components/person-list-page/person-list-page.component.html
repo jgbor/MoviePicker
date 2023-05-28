@@ -1,12 +1,12 @@
 <div class="page">
-  <div class="button-group">
+  <div mat-line>
     <mat-button-toggle-group (change)="getPeople(true)" [(ngModel)]="selectedValue">
       <mat-button-toggle value="trending">Trending</mat-button-toggle>
       <mat-button-toggle value="popular">Popular</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
 
-  <div class="center-row" *ngIf="(people | async)">
+  <div mat-line *ngIf="(people | async)">
     <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
             (click)="currentPage=currentPage-1;getPeople(false)">
       <mat-icon>chevron_left</mat-icon>
@@ -34,7 +34,7 @@
     </mat-card>
   </div>
 
-  <div class="center-row" *ngIf="(people | async)">
+  <div mat-line *ngIf="(people | async)">
     <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
             (click)="currentPage=currentPage-1;getPeople(false)">
       <mat-icon>chevron_left</mat-icon>

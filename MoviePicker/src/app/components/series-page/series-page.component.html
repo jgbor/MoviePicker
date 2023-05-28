@@ -1,21 +1,21 @@
 <div class="page">
   <div *ngIf="series">
-    <div class="backdrop">
+    <div mat-line class="backdrop">
       <img src="https://image.tmdb.org/t/p/w780/{{ (series | async)?.backdrop_path }}" alt="Backdrop">
     </div>
     <div class="properties">
       <div class="poster">
-        <h1>{{ (series | async)?.name }}</h1>
+        <h1 mat-line>{{ (series | async)?.name }}</h1>
         <img src="https://image.tmdb.org/t/p/w500/{{ (series | async)?.poster_path }}" alt="Poster">
       </div>
       <div class="series-details">
-        <p><a style="font-weight: bold">Rating: </a>{{ (series | async)?.vote_average }}</p>
-        <p>{{ genres }} series</p>
-        <p>{{(series | async)?.number_of_seasons}} season(s), {{(series | async)?.number_of_episodes}} episodes</p>
-        <p>{{(series | async)?.episode_run_time}} minutes/episode</p>
-        <p><a style="font-weight: bold">Status:</a> {{ (series | async)?.status }}</p>
-        <p><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
-        <p><a style="font-weight: bold">Release date:</a> {{ (series | async)?.first_air_date }}</p>
+        <p mat-line><a style="font-weight: bold">Rating: </a>{{ (series | async)?.vote_average }}</p>
+        <p mat-line>{{ genres }} series</p>
+        <p mat-line>{{(series | async)?.number_of_seasons}} season(s), {{(series | async)?.number_of_episodes}} episodes</p>
+        <p mat-line>{{(series | async)?.episode_run_time}} minutes/episode</p>
+        <p mat-line><a style="font-weight: bold">Status:</a> {{ (series | async)?.status }}</p>
+        <p mat-line><a style="font-weight: bold">Languages:</a> {{ languages }}</p>
+        <p mat-line><a style="font-weight: bold">Release date:</a> {{ (series | async)?.first_air_date }}</p>
         {{ (series | async)?.overview }}
         <p style="font-weight: bold">Seasons:</p>
         <mat-accordion>
@@ -32,8 +32,9 @@
 
             <div *ngIf="(season | async)?.episodes">
               <mat-list>
-                <mat-list-item *ngFor="let episode of (season | async)?.episodes">
+                <mat-list-item *ngFor="let episode of (season | async)?.episodes; last as last">
                   <span style="font-weight: bold">{{ episode.name }}</span> - {{ episode.air_date }}
+                  <p><mat-divider *ngIf="!last"></mat-divider></p>
                 </mat-list-item>
               </mat-list>
             </div>

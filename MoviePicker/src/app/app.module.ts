@@ -26,6 +26,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatMenuModule} from "@angular/material/menu";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatLineModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -39,23 +40,24 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/materia
     SeriesPageComponent,
     PersonPageComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatTabsModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        FormsModule,
-        MatCardModule,
-        MatIconModule,
-        MatListModule,
-        MatExpansionModule,
-        MatMenuModule,
-        MatSnackBarModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    FormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatListModule,
+    MatExpansionModule,
+    MatMenuModule,
+    MatSnackBarModule,
+    MatLineModule
+  ],
   providers: [
     MovieService,
     PersonService,

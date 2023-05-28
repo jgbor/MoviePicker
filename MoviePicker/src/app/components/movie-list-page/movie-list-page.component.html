@@ -1,5 +1,5 @@
 <div class="page">
-  <div class="button-group">
+  <div mat-line>
     <mat-button-toggle-group (change)="getMovies(true)" [(ngModel)]="selectedValue">
       <mat-button-toggle value="trending">Trending</mat-button-toggle>
       <mat-button-toggle value="discover">Discover</mat-button-toggle>
@@ -10,7 +10,7 @@
     </mat-button-toggle-group>
   </div>
 
-  <div class="center-row" *ngIf="(movies | async)">
+  <div mat-line *ngIf="(movies | async)">
     <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
             (click)="currentPage=currentPage-1;getMovies(false)">
       <mat-icon>chevron_left</mat-icon>
@@ -38,7 +38,7 @@
       </mat-card>
     </div>
 
-  <div class="center-row" *ngIf="(movies | async)">
+  <div mat-line *ngIf="(movies | async)">
     <button mat-icon-button aria-label="Back" color="primary" [disabled]="currentPage <= 1 "
             (click)="currentPage=currentPage-1;getMovies(false)">
       <mat-icon>chevron_left</mat-icon>

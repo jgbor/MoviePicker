@@ -20,7 +20,7 @@ mat-card > a {
   text-decoration: none;
 }
 
-.center-row{
+.mat-line{
   display: flex;
   align-items: center;
 }
@@ -45,9 +45,6 @@ mat-card-title {
 
 mat-button-toggle-group {
   margin: 10px;
-  align-content: center;
-  width: fit-content;
-  align-self: center;
 }
 
 img {
