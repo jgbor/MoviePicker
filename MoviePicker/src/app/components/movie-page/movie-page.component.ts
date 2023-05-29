@@ -7,6 +7,9 @@ import {Title} from "@angular/platform-browser";
 import {Credits} from "../../models/movie/credits.type";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
+/**
+ * Egy film adatainak oldala.
+ */
 @Component({
   selector: 'app-movie-page',
   templateUrl: './movie-page.component.html',
@@ -20,8 +23,20 @@ export class MoviePageComponent implements OnInit {
   languages: string = "";
   error: boolean = false;
 
+  /**
+   * Konstruktor.
+   *
+   * @param route - Az ActivatedRoute példány, a navigációs útvonal paramétereinek lekéréséhez.
+   * @param movieService - A MovieService példány, a filmadatok lekéréséhez.
+   * @param titleService - A Title példány, az oldal címének beállításához.
+   * @param snackbar - A MatSnackBar példány, a Snackbar üzenetek megjelenítéséhez.
+   */
   constructor(private route: ActivatedRoute,private movieService: MovieService, private titleService: Title, private snackbar: MatSnackBar) { }
 
+  /**
+   * Az OnInit interfész metódusa.
+   * Inicializálja a komponenst.
+   */
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.movieId = params['id'];
@@ -30,6 +45,10 @@ export class MoviePageComponent implements OnInit {
     this.movie?.subscribe(movie => this.titleService.setTitle(movie.title));
   }
 
+  /**
+   * A film lekérése a megadott azonosító alapján.
+   * Hiba esetén megjelenít egy Snackbar üzenetet és újrapróbálkozást kínál.
+   */
   getMovie(): void {
     this.error = false;
     this.movie = this.movieService.getMovie(this.movieId).pipe(
@@ -46,6 +65,10 @@ export class MoviePageComponent implements OnInit {
     })
   }
 
+  /**
+   * A film stábadatainak lekérése a megadott azonosító alapján.
+   * Hiba esetén megjelenít egy Snackbar üzenetet és újrapróbálkozást kínál.
+   */
   getCredits(): void {
     this.credits = this.movieService.getCredits(this.movieId).pipe(
       catchError(err => {
@@ -56,6 +79,11 @@ export class MoviePageComponent implements OnInit {
       }));
   }
 
+  /**
+   * Snackbar megnyitása hibaüzenettel és újrapróbálkozással.
+   * @param message Az üzenet szövege.
+   * @param action Az gomb szövege.
+   */
   private openSnackBar(message: string, action: string) {
     let snackbarRef = this.snackbar.open(message, action, {
       verticalPosition: "top",

@@ -29,6 +29,9 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/materia
 import {MatLineModule} from "@angular/material/core";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
+/**
+ * Az alkalmazás gyökér modulja.
+ */
 @NgModule({
   declarations: [
     MoviePickerAppComponent,

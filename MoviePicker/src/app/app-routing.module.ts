@@ -7,6 +7,9 @@ import {MoviePageComponent} from "./components/movie-page/movie-page.component";
 import {SeriesPageComponent} from "./components/series-page/series-page.component";
 import {PersonPageComponent} from "./components/person-page/person-page.component";
 
+/**
+ * Az alkalmazás útvonalait definiáló modul.
+ */
 let routes: Route[] = [
   { path: "movies", component: MovieListPageComponent },
   { path: "series", component: SeriesListPageComponent },

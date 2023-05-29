@@ -16,7 +16,7 @@
         {{ (movie | async)?.overview }}
         <mat-nav-list>
           <div *ngFor=" let castMember of (credits | async)?.cast">
-            <p mat-line *ngIf="castMember.order<=20" class="cast">
+            <p mat-line *ngIf="castMember.order! <= 20" class="cast">
               <a routerLink="/people/{{castMember.id}}" style="font-weight: bold">{{ castMember.name }}</a>
               as {{ castMember.character }}
             </p>

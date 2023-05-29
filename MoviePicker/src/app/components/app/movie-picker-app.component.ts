@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 
+/**
+ * A MoviePicker alkalmazás gyökér komponense.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './movie-picker-app.component.html',

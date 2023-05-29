@@ -5,13 +5,24 @@ import {Series} from "../../models/series/series.type";
 import {SeriesService} from "../../services/series.service";
 import {Title} from "@angular/platform-browser";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ListComponent} from "../list-component";
 
+/**
+ * Sorozatokat listázó oldal komponense.
+ */
 @Component({
   selector: 'app-series-page',
   templateUrl: './series-list-page.component.html',
   styleUrls: ['../list-page.component.css']
 })
-export class SeriesListPageComponent implements OnInit {
+export class SeriesListPageComponent implements OnInit, ListComponent {
+
+  /**
+   * Konstruktor az osztályhoz.
+   * @param seriesService A SeriesService osztály példánya.
+   * @param titleService A Title osztály példánya.
+   * @param snackbar Az MatSnackBar osztály példánya.
+   */
   constructor(private seriesService: SeriesService, private titleService: Title, private snackbar: MatSnackBar) {
   }
 
@@ -21,6 +32,10 @@ export class SeriesListPageComponent implements OnInit {
   maxPages: number = 0;
   error: boolean = false;
 
+  /**
+   * Az OnInit interfész metódusa.
+   * Inicializálja a komponenst.
+   */
   ngOnInit(): void {
     this.selectedValue = sessionStorage.getItem('seriesSelectedValue') || "trending";
     this.currentPage = parseInt(sessionStorage.getItem('seriesCurrentPage') || '1');
@@ -29,6 +44,10 @@ export class SeriesListPageComponent implements OnInit {
     this.titleService.setTitle("Series");
   }
 
+  /**
+   * Sorozatok lekérdezése a kiválasztott kategóriára.
+   * @param categorySwitched Igaz, ha a kategória váltás történt, különben hamis.
+   */
   getSeries(categorySwitched: boolean): void {
     this.error= false;
     if (categorySwitched) {
@@ -97,13 +116,21 @@ export class SeriesListPageComponent implements OnInit {
     this.saveToSessionStorage()
   }
 
-  private saveToSessionStorage() {
+  /**
+   * Adatok mentése a böngésző session storage-jába.
+   */
+  saveToSessionStorage() {
     sessionStorage.setItem('seriesSelectedValue', this.selectedValue);
     sessionStorage.setItem('seriesCurrentPage', this.currentPage.toString());
     sessionStorage.setItem('seriesMaxPages', this.maxPages.toString());
   }
 
-  private openSnackBar(message: string, action: string) {
+  /**
+   * Snackbar megnyitása hibaüzenettel és újrapróbálkozással.
+   * @param message Az üzenet szövege.
+   * @param action Az gomb szövege.
+   */
+  openSnackBar(message: string, action: string) {
     let snackbarRef = this.snackbar.open(message, action, {
       verticalPosition: "top",
     });

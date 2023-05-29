@@ -7,6 +7,9 @@ import {SeriesService} from "../../services/series.service";
 import {Season} from "../../models/series/season.type";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
+/**
+ * Egy sorozat adatainak oldala.
+ */
 @Component({
   selector: 'app-series-page',
   templateUrl: './series-page.component.html',
@@ -20,7 +23,20 @@ export class SeriesPageComponent implements OnInit{
   languages: string = "";
   error: boolean = false;
 
+  /**
+   * Konstruktor.
+   *
+   * @param route - Az ActivatedRoute példány, a navigációs útvonal paramétereinek lekéréséhez.
+   * @param seriesService - A SeriesService példány, a sorozatadatok lekéréséhez.
+   * @param titleService - A Title példány, az oldal címének beállításához.
+   * @param snackbar - A MatSnackBar példány, a Snackbar üzenetek megjelenítéséhez.
+   */
   constructor(private route: ActivatedRoute,private seriesService: SeriesService,private titleService: Title, private snackbar: MatSnackBar) { }
+
+  /**
+   * Az OnInit interfész metódusa.
+   * Inicializálja a komponenst.
+   */
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.seriesId = params['id'];
@@ -29,6 +45,10 @@ export class SeriesPageComponent implements OnInit{
     this.series?.subscribe(series => this.titleService.setTitle(series.name));
   }
 
+  /**
+   * A sorozat lekérése a megadott azonosító alapján.
+   * Hiba esetén megjelenít egy Snackbar üzenetet és újrapróbálkozást kínál.
+   */
   private getSeries() {
     this.error = false;
     this.series = this.seriesService.getSeries(this.seriesId).pipe(
@@ -45,6 +65,10 @@ export class SeriesPageComponent implements OnInit{
     this.getSeasons();
   }
 
+  /**
+   * A sorozat évadainak lekérése a megadott azonosító alapján.
+   * Hiba esetén megjelenít egy Snackbar üzenetet és újrapróbálkozást kínál.
+   */
   private getSeasons() {
     this.series?.subscribe(
       series => {
@@ -60,6 +84,12 @@ export class SeriesPageComponent implements OnInit{
       }
     )
   }
+
+  /**
+   * Snackbar megnyitása hibaüzenettel és újrapróbálkozással.
+   * @param message Az üzenet szövege.
+   * @param action Az gomb szövege.
+   */
   private openSnackBar(message: string, action: string) {
     let snackbarRef = this.snackbar.open(message, action, {
       verticalPosition: "top",
